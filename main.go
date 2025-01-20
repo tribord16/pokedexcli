@@ -40,8 +40,8 @@ type PokemonStat struct {
 	Name string `json:"name"`
 }
 type PokemonStats struct {
-	Base_Stat int         `json:"base_stats"`
-	Stat      PokemonStat `json:"stat"`
+	BaseStat int         `json:"base_stat"`
+	Stat     PokemonStat `json:"stat"`
 }
 type PokemonType struct {
 	Name string `json:"name"`
@@ -125,8 +125,8 @@ func getPokemonInfo(url string, pokemonName string) (PokemonInfoResponse, error)
 	if err != nil {
 		return PokemonInfoResponse{}, fmt.Errorf("error decoding response: %w", err)
 	}
-	rawData, _ := json.Marshal(response)
-	fmt.Println("Raw API Response:", string(rawData))
+	//rawData, _ := json.Marshal(response)
+	//fmt.Println("Raw API Response:", string(rawData))
 	return response, nil
 }
 
@@ -291,7 +291,7 @@ func commandInspect(c *Config, pokemonName string) error {
 	} else {
 		fmt.Printf("Name: %s\n Height: %d\n Weight: %d\n", pokemon.Name, pokemon.Height, pokemon.Weight)
 		for _, stat := range pokemon.Stats {
-			fmt.Printf("-%s: %d\n", stat.Stat.Name, stat.Base_Stat)
+			fmt.Printf("-%s: %d\n", stat.Stat.Name, stat.BaseStat)
 		}
 	}
 	return nil
