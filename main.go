@@ -125,6 +125,8 @@ func getPokemonInfo(url string, pokemonName string) (PokemonInfoResponse, error)
 	if err != nil {
 		return PokemonInfoResponse{}, fmt.Errorf("error decoding response: %w", err)
 	}
+	rawData, _ := json.Marshal(response)
+	fmt.Println("Raw API Response:", string(rawData))
 	return response, nil
 }
 
